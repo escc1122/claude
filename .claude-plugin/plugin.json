@@ -1,9 +1,9 @@
 {
   "name": "alma",
-  "version": "0.1.0",
   "description": "寫程式與 code review 共用一套原則的個人工作流程",
   "author": {
     "name": "escc1122"
   },
-  "repository": "https://github.com/escc1122/claude"
+  "repository": "https://github.com/escc1122/claude",
+  "license": "MIT"
 }
