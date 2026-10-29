@@ -27,15 +27,15 @@ plugin 沒寫死版號，每次更新都會拿到最新的 commit。也可以在
 
 - `/alma:code <任務>`：寫程式，需求 → 設計 → 實作 → 驗證。只能手動叫用，模型不會自己觸發。
 - `/alma:review-mr <MR 編號>`：review 一張 GitLab MR，從需求推、先討論設計再看 bug。
-- `/alma:reflect [主題]`：回頭整理累積的教訓。讀專案 memory 的教訓與 feedback，對照 plugin 文件，提出新增、合併、刪除的建議，只提案不改檔。建議每月或每 10 張 MR 跑一次。只能手動叫用。
-- `alma:principles`：上面兩個共用的工程原則。兩個指令開始時都會先載入它，review-mr 只放 review 專屬的部分。
+- `/alma:reflect [主題]`：回頭整理累積的教訓。讀專案 memory 的教訓與 feedback，對照 plugin 文件，提出新增、合併、刪除的建議；plugin 文件只提案不改。建議每月或每 10 張 MR 跑一次。只能手動叫用。
+- `alma:principles`：code 和 review-mr 共用的工程原則。這兩個指令開始時都會先載入它，review-mr 只放 review 專屬的部分。
 - 溝通規則（`rules/communication.md`）：每個 session 開始時由 hook 自動載入，新 session、`/clear`、壓縮後都會。
 - `backup/`：大改前的舊版 review-mr，plugin 不會載入。
 
 ## 成本
 
 - 每個 session 固定多佔約 130 token（指令與 skill 的說明）加上溝通規則約 800 字。
-- 叫用時才載入的部分：review-mr 約 9.5k token、principles 約 1.9k、code 約 0.7k。
+- 叫用時才載入的部分：review-mr 約 9.8k token、principles 約 2.5k、reflect 約 1.4k、code 約 0.7k。reflect 另外會讀 memory，建議交給子代理跑。
 
 ## 設定
 
