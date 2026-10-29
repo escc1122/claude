@@ -60,7 +60,7 @@ Phase 2 設計討論、Phase 3 摘要、Phase 4 解說、Phase 5 comment **都�
 
 ### Phase 1: 取得 MR 資訊與需求
 
-1. 從環境變數取得 GitLab URL (`GITLAB_URL`) 與 Project ID (`GITLAB_PROJECT_ID`)（沒設就查專案 MEMORY.md；都沒有就問使用者，別猜），透過 GitLab API 用 MR number 查出 source branch 與 `diff_refs`（`base_sha`、`head_sha`）。
+1. 從 MEMORY.md 取得 GitLab URL (`GITLAB_URL`) 與 Project ID (`GITLAB_PROJECT_ID`)，透過 GitLab API 用 MR number 查出 source branch 與 `diff_refs`（`base_sha`、`head_sha`）。
 2. `git fetch origin` 確保最新。
 3. **切換到 MR 的 source branch**（`git checkout`／`git switch <source_branch>`）：讓後續 `Read`／`grep -n` 直接對到真實檔案與**真實行號**，不必逐檔 `git show origin/<branch>:<file>`。
    - **防呆**：切換前先看 `git status`，只有**已追蹤檔的未提交修改**（會被 checkout 覆蓋／衝突的那種）才**先提醒使用者、別硬切**；純 untracked 檔（如 `??` 新目錄）不擋 checkout，放行即可。
@@ -153,10 +153,10 @@ Phase 2 已讀過完整 diff 和主要呼叫鏈，這裡補追沒追到的路徑
    - [ ] **依回應格式寫**：comment 是給作者照著改的產出物，不是分析稿——他掃第一句就該知道要做什麼。
    - [ ] **範圍**：超出本 MR scope 的（既有架構債／其他 ticket）標「不阻擋 merge」或「建議獨立處理」。
    - [ ] **發現問題先說明再修正**，不要直接發布。
-5. 檢查通過後透過 GitLab API 發布（`GITLAB_URL`、`GITLAB_PROJECT_ID` 同 Phase 1 取得方式）：
+5. 檢查通過後透過 GitLab API 發布（GitLab URL、Project ID、token 取得方式均記錄在 MEMORY.md）：
 
 ```bash
-# GITLAB_URL, GITLAB_PROJECT_ID 同 Phase 1（環境變數，沒有再查 MEMORY.md）
+# GITLAB_URL, GITLAB_PROJECT_ID 從 MEMORY.md 取得
 CRED=$(echo "url=${GITLAB_URL}" | git credential fill 2>/dev/null)
 PASSWORD=$(echo "$CRED" | grep "^password=" | cut -d= -f2)
 # fallback：credential helper 沒抓到就用環境變數 GITLAB_TOKEN
@@ -187,7 +187,7 @@ fi
 
 （維護本文件／MEMORY 的規則，一輪 review 用不到，需要時再查。）
 
-- 發布後更新 MEMORY.md 時一併檢查本文件是否要同步（review 學到的教訓、流程改進回饋到這裡，因本文件跨專案用；本文件以 plugin 安裝，要改請改 plugin 原始 repo 再更新 plugin，別改安裝後的快取）；**明講哪些記錄要更新、哪些不用及理由**，別默默判斷。
-- **本文件 vs 各專案 MEMORY 分工**（避免雙份維護分歧）：本文件（plugin 一份、各專案共用）＝通用原則＋領域通用原型例子（任何專案都認得，如「序列化框架已統一使用卻手寫型別檢查」）；各專案 MEMORY ＝該 repo 具體案例（實際 MR／檔案／欄位），每條標注校準本文件哪條原則。通用原則不在 MEMORY 複製。判斷例子放哪：「別的專案看得懂嗎」——看得懂留本文件、只有這 repo 懂進 MEMORY。
-- 改名核心原則時只同步當前專案 MEMORY（其他專案的 MEMORY 標籤可能失聯，是已知取捨）；故 MEMORY 案例要**自足**、【原則名】標籤只當 best-effort cross-ref。
+- 發布後更新 MEMORY.md 時一併檢查本文件是否要同步（review 學到的教訓、流程改進回饋到這裡，因本文件跨專案用）；**明講哪些記錄要更新、哪些不用及理由**，別默默判斷。
+- **本文件 vs 各專案 MEMORY 分工**（避免雙份維護分歧）：本文件（各專案各一份 copy）＝通用原則＋領域通用原型例子（任何專案都認得，如「序列化框架已統一使用卻手寫型別檢查」）；各專案 MEMORY ＝該 repo 具體案例（實際 MR／檔案／欄位），每條標注校準本文件哪條原則。通用原則不在 MEMORY 複製。判斷例子放哪：「別的專案看得懂嗎」——看得懂留本文件、只有這 repo 懂進 MEMORY。
+- 改名核心原則時只同步當前專案 MEMORY（本文件各專案各一份 copy，跨專案標籤失聯是已知取捨）；故 MEMORY 案例要**自足**、【原則名】標籤只當 best-effort cross-ref。
 - **改動核心原則／流程前先過評估（改錯字、順措辭不算）**，逐項問並講給使用者聽：①已被現有原則涵蓋？②放對層（核心原則＝審 code／回應格式＝怎麼寫回應／Phase 1＝取得資訊與需求／Phase 2＝目標與設計／Phase 3＝程式碼／Phase 4＝互動／Phase 5＝發布／本段＝文件維護）？③要擋的是反射或當下會忘的毛病嗎（是→寫成可檢查的具體絆線，別只放抽象原則）？④會不會製造新失敗模式（矯枉過正、跟別條打架）？⑤該進本文件還是專案 MEMORY？⑥值不值得版面？**評估者要當真關卡：認為不該加就直說「不要加」，不是橡皮圖章；同一次討論連續改了好幾條時，結束前再整體看一次重疊與篇幅，能合併就合併。**
