@@ -25,7 +25,7 @@ plugin 沒寫死版號，每次更新都會拿到最新的 commit。也可以在
 
 ## 內容
 
-- `/alma:code <任務>`：寫程式，需求 → 設計 → 實作 → 驗證。只能手動叫用，模型不會自己觸發。
+- `/alma:code <任務>`：寫程式，需求 → 設計 → 實作 → 驗證。可以手動叫用；對話中要開始寫或改程式時，模型也會自己載入。
 - `/alma:review-mr <MR 編號>`：review 一張 GitLab MR，從需求推、先討論設計再看 bug。
 - `/alma:reflect [主題]`：回頭整理累積的教訓。讀專案 memory 的教訓與 feedback，對照 plugin 文件，提出新增、合併、刪除的建議；plugin 文件只提案不改。建議每月或每 10 張 MR 跑一次。只能手動叫用。
 - `alma:principles`：code 和 review-mr 共用的工程原則。這兩個指令開始時都會先載入它，review-mr 只放 review 專屬的部分。
