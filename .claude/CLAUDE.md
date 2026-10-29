@@ -31,5 +31,6 @@
 - `skills/principles`：寫與審共用的工程原則。其他檔案用條目標題引用，不用編號，也不重複抄內容。
 - `commands/review-mr.md`：review 流程與 review 專屬姿態。改它的核心原則或流程前，照它「文件維護」段的評估六問。
 - `skills/code`：寫程式流程，只能手動叫用。
+- `skills/reflect`：回頭整理教訓，只提案不改檔，只能手動叫用。
 - `rules/communication.md` + `hooks/hooks.json`：溝通規則，每個 session 自動載入。
 - `backup/`：大改前的舊版，plugin 不載入。

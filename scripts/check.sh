@@ -17,7 +17,7 @@ fi
 
 echo "2. 元件載入"
 details=$(claude --plugin-dir "$PWD" plugin details alma 2>&1 || true)
-for skill in code principles review-mr; do
+for skill in code principles reflect review-mr; do
   if echo "$details" | grep -q -E "Skills \([0-9]+\).*\b$skill\b"; then ok "skill $skill"; else bad "skill $skill 沒載入"; fi
 done
 if echo "$details" | grep -q -E 'Hooks \([1-9]'; then ok "hook 已註冊"; else bad "hook 沒註冊"; fi
