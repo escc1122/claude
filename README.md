@@ -16,7 +16,7 @@
 - `/alma:code <任務>`：寫程式，需求 → 設計 → 實作 → 驗證
 - `/alma:review-mr <MR 編號>`：review 一張 GitLab MR，從需求推、先討論設計再看 bug
 - `alma:principles`：上面兩個共用的工程原則。兩個指令開始時都會先載入它，review-mr 只放 review 專屬的部分
-- `templates/CLAUDE.md`：溝通規則範本，要自己複製（見下方）
+- `rules/communication.md`：溝通規則，每個 session 開始時由 hook 自動載入（新 session、`/clear`、壓縮後都會）
 - `backup/`：大改前的舊版，plugin 不會載入
 
 ## 設定
@@ -32,12 +32,7 @@ export GITLAB_PROJECT_ID=123
 
 ### 溝通規則
 
-plugin 沒辦法替你寫 `~/.claude/CLAUDE.md`，要手動複製。最簡單是 clone 這個 repo 再複製：
-
-```bash
-git clone https://github.com/escc1122/claude.git
-cat claude/templates/CLAUDE.md >> ~/.claude/CLAUDE.md
-```
+裝好就生效，不用另外設定。不想要的話，刪掉或改寫 `rules/communication.md`；只想關掉 hook，可以在 `/plugin` 裡停用整個 plugin。
 
 ## 適用範圍
 
