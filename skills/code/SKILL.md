@@ -11,8 +11,6 @@ disable-model-invocation: true
 
 開始前先用 Skill 工具載入 `alma:principles`，整個過程照它做。引用原則時用條目標題。
 
-開場把下面四個 Phase 的步驟逐字開成 todo 清單，做完一項勾一項。
-
 ## Phase 1：需求
 
 1. 有 Jira 單就讀本單、父單、前後子單，只抽「要做什麼」：目標、人做的決定、驗收條件、已接受的風險。
