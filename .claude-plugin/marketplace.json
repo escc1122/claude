@@ -1,0 +1,16 @@
+{
+  "name": "escc1122",
+  "owner": {
+    "name": "escc1122"
+  },
+  "metadata": {
+    "description": "escc1122 的個人 Claude Code plugin"
+  },
+  "plugins": [
+    {
+      "name": "alma",
+      "source": "./",
+      "description": "寫程式與 code review 共用一套原則的個人工作流程"
+    }
+  ]
+}
