@@ -5,7 +5,9 @@
 ## push 前
 
 - 一律跑 `scripts/check.sh`（pre-push hook 會自動跑；新 clone 要先 `git config core.hooksPath scripts/git-hooks`）。改到 hook 或 `rules/` 時加 `--live`。
-- 公司字眼清單在 `scripts/leak-patterns.local`，不進 git。新 clone 沒有這份檔，檢查會失敗，要先建。
+- Claude 讀過這次要推的 diff 與 commit 作者／訊息，確認兩件事再推：
+  1. 沒有公司資訊：公司網域、內部帳號、單號、同事名、內部程式或模組名稱。
+  2. 沒有實際案例：文件只寫原則和判準，不放來自真實工作的例子，包括去識別化、換過名字的。案例留在各專案自己的 memory。通用常識的說明（例如「網路暫時失敗就重試」）不算。
 
 ## 什麼時候加做對抗分析
 
