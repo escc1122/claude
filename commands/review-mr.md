@@ -53,12 +53,6 @@ Phase 2 設計討論、Phase 3 摘要、Phase 4 解說、Phase 5 comment **都�
 
 ## 流程
 
-**開場先開 todo 清單（擋「漏一關」）**：讀完參數後，把下面各 Phase 的步驟與勾選項目逐字開成 todo 清單（有 TodoWrite 就用，沒有就列在回覆裡，每個 Phase 結束時更新）：Phase 1 五步、Phase 2 第 1–5 步與設計三項、Phase 3 三步與勾選清單、Phase 5 第 1–5 步與發布前勾選。
-- 會送出產出的三步（Phase 2 交付、Phase 3 判斷、Phase 5 comment）後面各掛一項「送出前勾回應格式 ①–⑥」。
-- 不適用的項目不刪，標「略過：原因」（例：沒改流程，Phase 2 併入 Phase 3）。
-- 勾掉一項時寫一句實際看了什麼；寫不出來就是沒做。
-- Phase 4 互動沒有固定步驟，不開清單。
-
 ### Phase 1: 取得 MR 資訊與需求
 
 1. 從環境變數取得 GitLab URL (`GITLAB_URL`) 與 Project ID (`GITLAB_PROJECT_ID`)（沒設就查 Claude Code 的專案 auto-memory `MEMORY.md`；都沒有就問使用者，別猜），透過 GitLab API 用 MR number 查出 source branch 與 `diff_refs`（`base_sha`、`head_sha`）。
